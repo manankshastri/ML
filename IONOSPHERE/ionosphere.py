@@ -15,11 +15,11 @@ label_y = LabelEncoder()
 y = label_y.fit_transform(y)
 
 from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=151, random_state=0)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=51, random_state=0)
 
 # classifier
 from sklearn.svm import SVC
-classifier = SVC(C=10, kernel='rbf', gamma=0.1, random_state=0)
+classifier = SVC(C=10, kernel='rbf', gamma=0.5, random_state=0)
 classifier.fit(X_train, y_train)
 
 y_pred = classifier.predict(X_test)
