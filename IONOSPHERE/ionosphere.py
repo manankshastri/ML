@@ -15,27 +15,32 @@ label_y = LabelEncoder()
 y = label_y.fit_transform(y)
 
 from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=51, random_state=0)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=90, random_state=0)
 
 # classifier
 from sklearn.svm import SVC
-classifier = SVC(C=10, kernel='rbf', gamma=0.5, random_state=0)
+classifier = SVC(C=10, kernel='rbf', gamma=0.1, random_state=0)
 classifier.fit(X_train, y_train)
 
 y_pred = classifier.predict(X_test)
 
 from sklearn.metrics import accuracy_score, confusion_matrix
-acc1 = accuracy_score(y_test, y_pred)
-cm1 = confusion_matrix(y_test, y_pred)
-print(acc1)
-print(cm1)
+acc = accuracy_score(y_test, y_pred)
+cm = confusion_matrix(y_test, y_pred)
+print("SVM ----->")
+print("Accuracy: ", acc*100, "%")
+print("Confusion Matrix:\n", cm)
 
+"""
 # grid selection
 from sklearn.model_selection import GridSearchCV
-parameters = [{'C': [1, 10, 100, 1000], 'kernel': ['rbf'], 'gamma': [0.5, 0.1, 0.01, 0.001]}]
+parameters = [{'C': [1, 10, 100, 1000], 'kernel': ['linear']},
+              {'C': [1, 10, 100, 1000], 'kernel': ['rbf'], 'gamma':[0.5, 0.1, 0.01, 0.001]},
+              {'C': [1, 10, 100, 1000], 'kernel': ['poly'], 'degree':[1,2,3,4,5], 'coef0':[0.0, 0.1, 0.2, 0.3], 'gamma':[0.5, 0.1, 0.01, 0.001]}]
 grid_search = GridSearchCV(estimator=classifier, param_grid=parameters, scoring='accuracy', cv=10)
 grid_search = grid_search.fit(X_train, y_train)
 best_accuracy = grid_search.best_score_
 best_parameters = grid_search.best_params_
 print(best_accuracy)
 print(best_parameters)
+"""
