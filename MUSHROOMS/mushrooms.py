@@ -85,6 +85,6 @@ plt.plot(false_positive_rate, true_positive_rate, color='red', label='AUC = %0.2
 plt.legend(loc='lower right')
 plt.plot([0, 1], [0, 1], linestyle='-')
 plt.axis('tight')
-plt.xlabel('true positive rate')
-plt.ylabel('false positive rate')
+plt.xlabel('false positive rate')
+plt.ylabel('true positive rate')
 plt.show()
